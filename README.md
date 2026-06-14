@@ -8,7 +8,9 @@ $$
 P(X_1 = x_1, \ldots, X_k = x_k) = \frac{n!}{x_1! \cdots x_k!} \prod_{i=1}^k p_i^{x_i}
 $$
 
-约束条件：$\sum_{i=1}^k x_i = n$，$x_i \geq 0$。
+$$
+\sum_{i=1}^k x_i = n, \quad x_i \geq 0 \text{ 且为整数}
+$$
 
 **对数形式**（避免数值溢出）：
 
