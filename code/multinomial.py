@@ -36,6 +36,15 @@ class MultinomialDistribution(object):
         -------
         numpy array, shape (k,)
             每个类别出现的次数
+            
+        假设有6个面，概率均等
+        p = [1/6, 1/6, 1/6, 1/6, 1/6, 1/6]
+        dist = MultinomialDistribution(p)
+
+        掷10次骰子
+        result = dist.sample(10)  
+        可能输出: [2, 1, 3, 1, 2, 1]
+        含义: 1点出现2次, 2点1次, 3点3次...
         """
         # 使用 NumPy 的多项分布采样函数
         x = self.rso.multinomial(n, self.p)
@@ -59,9 +68,10 @@ class MultinomialDistribution(object):
         sum_log_xi_factorial = np.sum(gammaln(x + 1))  # log(x1! * ... * xk!)
 
         # 计算 log(p1^x1 * ... * pk^xk)
-        log_pi_xi = self.logp * x
+        log_pi_xi = self.logp * x # = xi * log(pi)
         # 如果概率为 0 且 x[i] 也为 0，则乘积为 0，否则会得到 nan
-        log_pi_xi[x == 0] = 0
+        log_pi_xi[x == 0] = 0 # 避免 log(0) 产生 -inf,x == 0：返回一个布尔数组，标记哪些位置计数为0,把这些位置的值设为0,self.logp * x 会计算 0 * (-inf)得到 nan。手动将其设为 0 修正
+
         sum_log_pi_xi = np.sum(log_pi_xi)
 
         # 组合各部分得到 log-PMF
