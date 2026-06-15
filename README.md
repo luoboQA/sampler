@@ -18,29 +18,33 @@ $$
 \log P = \log(n!) - \sum_{i=1}^k \log(x_i!) + \sum_{i=1}^k x_i \log(p_i)
 $$
 
-## 第2层：属性分配
+## 2. 魔法物品生成（分层抽样）
 
-给定总加成 \( B = S \)，将 \( S \) 个点数分配到 6 个属性上。设属性加成向量为：
+### 第1层：总加成 $B$
 
-\[
-\mathbf{s} = (s_1, s_2, \ldots, s_6), \quad \sum_{j=1}^{6} s_j = S
-\]
+$$
+B \sim \text{Categorical}(\mathbf{p}_{\text{bonus}})
+$$
 
-条件分布服从**多项分布**：
+其中 $\mathbf{p}_{\text{bonus}} = [p_0, p_1, \ldots, p_m]$，$p_i = P(B = i)$。
 
-\[
-\mathbf{s} \mid B \sim \text{Multinomial}(S, \mathbf{q})
-\]
+### 第2层：属性分配
 
-其中 \( \mathbf{q} = (q_1, \ldots, q_6) \)，\( \sum_{j=1}^{6} q_j = 1 \)，\( q_j \) 为点数分配到第 \( j \) 个属性的概率。
+给定 $B = S$，将 $S$ 个点数分配到 6 个属性：
 
----
+$$
+(s_1, \ldots, s_6) \mid B \sim \text{Multinomial}(S, \mathbf{q})
+$$
 
-## 联合概率公式
+其中 $\mathbf{q} = (q_1, \ldots, q_6)$ 满足 $\sum_{j=1}^6 q_j = 1$，$q_j$ 为点数分配到第 $j$ 个属性的概率。
 
-\[
-P(\mathbf{s}) = P(B = S) \times \frac{S!}{s_1! \, s_2! \, \cdots \, s_6!} \prod_{j=1}^{6} q_j^{s_j}
-\]
+### 联合概率
+
+对于属性加成向量 $\mathbf{s} = (s_1, \ldots, s_6)$，令 $S = \sum_{j=1}^6 s_j$：
+
+$$
+P(\mathbf{s}) = P(B = S) \times \frac{S!}{s_1! \cdots s_6!} \prod_{j=1}^6 q_j^{s_j}
+$$
 ## 3. 伤害计算
 
 ### 骰子数量
