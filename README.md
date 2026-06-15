@@ -36,7 +36,7 @@ $$
 (s_1, \ldots, s_6) \mid B \sim \text{Multinomial}(S, \mathbf{q})
 $$
 
-其中 $\mathbf{q} = (q_1, \ldots, q_6)$ 满足 $\sum_{j=1}^6 q_j = 1$，$q_j$ 为点数分配到第 $j$ 个属性的概率。
+其中 $\mathbf{q} = (q_1, \ldots, q_6)$ 满足 $\sum_{j=1}^6 q_j = 1$， $q_j$ 为点数分配到第 $j$ 个属性的概率。
 
 ### 联合概率
 
