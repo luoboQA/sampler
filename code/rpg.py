@@ -69,7 +69,8 @@ class MagicItemDistribution(object):
         return self.bonus_dist.log_pmf(x)
 
     def _stats_log_pmf(self, stats):
-        """计算给定属性加成向量的对数概率（包括总加成的概率）"""
+        """计算给定属性加成向量的对数概率（包括总加成的概率）
+        这把 +3 力量、+2 敏捷的武器出现的概率是多少？"""
         total_bonus = np.sum(stats)                     # 总加成点数
         logp_bonus = self._bonus_log_pmf(total_bonus)   # 总加成的概率
         logp_stats = self.stats_dist.log_pmf(stats)     # 分配方式的概率
