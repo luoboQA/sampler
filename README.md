@@ -23,10 +23,10 @@ $$
 ### 第1层：总加成 $B$
 
 $$
-B \sim \text{Categorical} (\mathbf{p}_{\text{bonus}})
+B \sim \text{Categorical}(\mathbf{p}_{\text{bonus}})
 $$
 
-其中 $\mathbf{p}_{\text{bonus}} = [p_0, p_1, \ldots, p_m]$，$p_i = P(B = i)$。
+$\mathbf{p}_{\text{bonus}} = (p_0, p_1, \ldots, p_m)$，其中 $p_i = P(B = i)$。
 
 ### 第2层：属性分配
 
